@@ -25,12 +25,12 @@ function getWords() {
       const isRhyme = rita.isRhyme(allWords[i], allWords[j]);
 
       if(isRhyme) {
-         if (count === 100 && allWords[i] !== allWords[j]) {
+         if (count === Math.floor(Math.random() * 200 + 1) && allWords[i] !== allWords[j]) {
           nodeOne = allWords[i];
           nodeThree = allWords[j];
          }
 
-         if (count === 400 && allWords[i] !== allWords[j]) {
+         if (count === Math.floor(Math.random() * 200 + 1) && allWords[i] !== allWords[j]) {
            nodeTwo = allWords[i];
            nodeFour = allWords[j];
          }
