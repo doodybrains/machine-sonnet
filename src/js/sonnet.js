@@ -167,7 +167,6 @@ function appendSentences() {
     sonnet.appendChild(lineGDiv);
     sonnet.appendChild(lineG2Div);
   }
-
 }
 
 function tryRhyme(wordA, wordB) {
