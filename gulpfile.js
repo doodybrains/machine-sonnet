@@ -16,6 +16,15 @@ gulp.task('js', function () {
   .pipe(connect.reload())
 });
 
+gulp.task('build', function () {
+  return browserify('./src/js/sonnet.js')
+  .transform(babelify, {
+    presets: ['es2015']
+  })
+  .bundle()
+  .pipe(source('bundle.js'))
+  .pipe(gulp.dest('./build'))
+});
 
 gulp.task('webserver', function() {
   connect.server({
