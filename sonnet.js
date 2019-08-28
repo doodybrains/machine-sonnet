@@ -43,7 +43,7 @@ function makeSentences(one, two, pair) {
   for (let a = 0; a < sentences.length; a++) {
     if (sentences[a].indexOf(one) >= 0) {
       const sen = sentences[a].substring(0, sentences[a].indexOf(one) + one.length);
-
+      console.log("word a", one, sen, pair);
       if(pair === 1) {
         lineA.push(sen);
       }
@@ -68,7 +68,7 @@ function makeSentences(one, two, pair) {
     }
     if (sentences[a].indexOf(two) >= 0) {
       const sen = sentences[a].substring(0, sentences[a].indexOf(two) + two.length);
-
+      console.log("word b", two, sen, pair);
       if(pair === 1) {
         lineA2.push(sen);
       }
@@ -195,21 +195,3 @@ function tryRhyme(wordA, wordB) {
 }
 
 sonnet.classList.remove('machining');
-
-// a
-// b
-// a
-// b
-
-// c
-// d
-// c
-// d
-//
-// e
-// f
-// e
-// f
-//
-// g
-// g
