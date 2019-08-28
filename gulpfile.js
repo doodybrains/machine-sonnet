@@ -7,7 +7,7 @@ var sass = require('gulp-sass');
 var htmlmin = require('gulp-htmlmin');
 
 gulp.task('js', function () {
-  return browserify('./src/js/sonnet.js')
+  return browserify('./js/sonnet.js')
   .transform(babelify, {
     presets: ['es2015']
   })
@@ -24,17 +24,22 @@ gulp.task('webserver', function() {
 });
 
 gulp.task('sass', function() {
-  gulp.src('./src/**/*.scss')
+  gulp.src('./styles/*.scss')
     .pipe(sass())
     .pipe(gulp.dest('./build'))
     .pipe(connect.reload());
 });
 
+gulp.task('copy', function () {
+    gulp.src('./index.html')
+      .pipe(gulp.dest('./build/'));
+});
+
 gulp.task('watch', function() {
-  gulp.watch('./src/**/*.html', ['html']);
-  gulp.watch('./src/**/*.js', ['js']);
-  gulp.watch('./src/**/*.scss', ['sass']);
+  gulp.watch('./*.html', ['html']);
+  gulp.watch('./js/*.js', ['js']);
+  gulp.watch('./styles/*.scss', ['sass']);
 })
 
-gulp.task('default', ['html', 'sass', 'js', 'webserver', 'watch']);
-gulp.task('build', ['sass', 'js']);
+gulp.task('default', ['sass', 'js', 'webserver', 'watch']);
+gulp.task('build', ['copy', 'sass', 'js']);
