@@ -4,6 +4,7 @@ var babelify = require('babelify');
 var source = require('vinyl-source-stream');
 var connect = require('gulp-connect');
 var sass = require('gulp-sass');
+var htmlmin = require('gulp-htmlmin');
 
 gulp.task('js', function () {
   return browserify('./src/js/sonnet.js')
@@ -14,16 +15,6 @@ gulp.task('js', function () {
   .pipe(source('bundle.js'))
   .pipe(gulp.dest('./build'))
   .pipe(connect.reload())
-});
-
-gulp.task('build', function () {
-  return browserify('./src/js/sonnet.js')
-  .transform(babelify, {
-    presets: ['es2015']
-  })
-  .bundle()
-  .pipe(source('bundle.js'))
-  .pipe(gulp.dest('./build'))
 });
 
 gulp.task('webserver', function() {
@@ -40,8 +31,10 @@ gulp.task('sass', function() {
 });
 
 gulp.task('watch', function() {
+  gulp.watch('./src/**/*.html', ['html']);
   gulp.watch('./src/**/*.js', ['js']);
   gulp.watch('./src/**/*.scss', ['sass']);
 })
 
-gulp.task('default', ['sass', 'js', 'webserver', 'watch']);
+gulp.task('default', ['html', 'sass', 'js', 'webserver', 'watch']);
+gulp.task('build', ['sass', 'js']);
